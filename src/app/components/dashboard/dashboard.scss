@@ -1,39 +1,7 @@
-.inner-container {
-  display: flex;
-  height: 100%;
-}
-
-/* Left table section */
-.left-table {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  width: 30%;
-  flex-shrink: 0;
-  transition: width 0.3s ease;
-  overflow: hidden;
-}
-
-/* Collapsed state */
-.left-table.collapsed {
-  width: 100px !important;
-  padding: 0;
-  border: none;
-  overflow: hidden;
-}
-
-/* Table container */
-.table-container {
-  flex-grow: 1;
-  overflow: hidden;
-}
-
-/* Vertical toggle line */
-
-
 
 .collapse-toggle {
   width: 5px;
+height: -webkit-fill-available;
   background-color: #007bff;
   cursor: pointer;
   display: flex;
@@ -42,17 +10,56 @@
   transition: background-color 0.3s;
 }
 
-.collapse-toggle:hover {
-  background-color: #0056b3;
+// .inner-container {
+//   display: flex;
+//   align-items: flex-start;
+// }
+
+// .left-table {
+//   transition: all 0.3s ease;
+// }
+
+
+
+// .arrow-icon {
+//   display: inline-block;
+//   transition: transform 0.3s ease;
+// }
+
+// .arrow-icon.rotated {
+//   transform: rotate(180deg);
+// }
+.inner-container {
+  display: flex;
+  align-items: flex-start;
 }
 
+.left-table,
+.right-table {
+  max-height: 400px; /* same height for both tables */
+  overflow-y: auto;
+}
+
+.left-table {
+  flex: 0 0 auto;
+}
+
+.right-table {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.table th, .table td {
+  white-space: nowrap;
+  text-align: center;
+}
+
+
 .arrow-icon {
-  color: white;
-  font-size: 16px;
+  display: inline-block;
   transition: transform 0.3s ease;
 }
 
-/* Rotate arrow when collapsed */
 .arrow-icon.rotated {
   transform: rotate(180deg);
 }

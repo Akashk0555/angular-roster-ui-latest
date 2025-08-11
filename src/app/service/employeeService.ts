@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee.model';
+import { Comment } from '../models/comment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class EmployeeService {
 
   addComment(
     employeeId: number,
-    comment: Partial<Comment>
+    comment: Comment
   ): Observable<Comment> {
     return this.http.post<Comment>(
       `${this.baseUrl}/${employeeId}/comments`,
