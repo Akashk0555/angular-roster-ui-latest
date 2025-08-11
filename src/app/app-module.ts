@@ -3,14 +3,18 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { Dashboard } from './components/dashboard/dashboard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Dashboard
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
