@@ -1,0 +1,58 @@
+.inner-container {
+  display: flex;
+  height: 100%;
+}
+
+/* Left table section */
+.left-table {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 30%;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+/* Collapsed state */
+.left-table.collapsed {
+  width: 100px !important;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+
+/* Table container */
+.table-container {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+/* Vertical toggle line */
+
+
+
+.collapse-toggle {
+  width: 5px;
+  background-color: #007bff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.collapse-toggle:hover {
+  background-color: #0056b3;
+}
+
+.arrow-icon {
+  color: white;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when collapsed */
+.arrow-icon.rotated {
+  transform: rotate(180deg);
+}

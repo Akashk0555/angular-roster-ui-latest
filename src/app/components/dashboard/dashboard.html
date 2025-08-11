@@ -1,3 +1,28 @@
 <div class="container-fluid">
-  <div class="inner-container"></div>
+  <div class="inner-container">
+    <div [class.collapsed]="isCollapsed" class="left-table">
+      <div class="table-container transition">
+        <table class="table table-striped table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>Employee ID</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employee of employees">
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Vertical toggle line -->
+    <div class="collapse-toggle" (click)="toggleTable()">
+  <span [class.rotated]="isCollapsed" class="arrow-icon">&#9664;</span>
+</div>
+
+  </div>
 </div>

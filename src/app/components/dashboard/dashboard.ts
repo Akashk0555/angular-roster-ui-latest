@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../../service/employee';
-
+import { Employee } from '../../models/employee.model';
+import { EmployeeService } from '../../service/employeeService';
 @Component({
   selector: 'app-dashboard',
   standalone: false,
@@ -9,16 +9,18 @@ import { Employee } from '../../service/employee';
 })
 export class Dashboard implements OnInit {
   employees: Employee[] = [];
-  selectedEmployee: Employee | null = null;
-  newCommentText: string = '';
-  newCommentAuthor: string = '';
-
-  constructor(private employeeService: Employee) {}
+//  employees: any ;
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.loadEmployees();
-    console.log(this.employees);
   }
+  isCollapsed = false;
+
+  toggleTable() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
 
   loadEmployees(): void {
     this.employeeService.getEmployees().subscribe({
