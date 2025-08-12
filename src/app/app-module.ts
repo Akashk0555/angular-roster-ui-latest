@@ -5,18 +5,21 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddComment } from './components/add-comment/add-comment';
 
 @NgModule({
   declarations: [
     App,
-    Dashboard
+    Dashboard,
+    AddComment
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

@@ -1,0 +1,58 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+h4.modal-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+.modal-header {
+  border: none;
+}
+.form-label {
+  font-weight: 500;
+}
+.modal-content {
+  width: 350px;
+}
+.internal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-right: 10px;
+
+  .form-label {
+    margin-top: 7px;
+  }
+  .form-check-input {
+    margin-bottom: 4px;
+  }
+} /* Optional: spacing between label and checkbox */
+.modal-footer{
+  border: none;
+  padding-top: 0;
+}
+.modal-body{
+  padding-bottom: 0;
+}
+button.btn.btn-ok {
+  background: blue;
+  color: white;
+  border-radius: 70px;
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+button.btn.btn-cancel {
+  background: #EAF2F9;
+  color:#0038A8;
+  font-size: medium;
+  border-radius: 70px;
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}

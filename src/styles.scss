@@ -1,1 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  font-family: "Montserrat", sans-serif;
+}
+.required::after {
+  content: " *";
+  color: red;
+}
+/* Importing Bootstrap SCSS file. */
 /* You can add global styles to this file, and also import other style files */
+.trans-back {
+    .modal-content{width: 250px;}
+    .modal-dialog{padding-top: 0;}
+    
+    
+}
