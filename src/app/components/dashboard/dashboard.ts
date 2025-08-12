@@ -46,11 +46,10 @@ export class Dashboard implements OnInit {
     //  const commentPayload: Comment = {
     //     author: 'Test User',
     //     text: 'This is a test comment', // or commentText if your backend expects it
-    //     employeeId: 1,
     //     commentDate: '2025-08-11',
     //   };
 
-    //   this.employeeService.addComment(1, commentPayload).subscribe({
+    //   this.employeeService.addComment(5, commentPayload).subscribe({
     //     next: (response) => {
     //       console.log('✅ Comment added successfully:', response);
     //     },
