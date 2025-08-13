@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeService } from '../../service/employeeService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-comment',
@@ -14,15 +15,16 @@ export class AddComment {
   maxChars = 1000;
   remainingChars = this.maxChars;
   @Input() idFromDashboard: any;
+  @Input() dateFromDashboard: any;
   constructor(private fb: FormBuilder, private activeModal: NgbActiveModal,
-    private employeeService:EmployeeService
+    private employeeService:EmployeeService,private router:Router
   ) {}
 
   ngOnInit() {
     this.rosterForm = this.fb.group({
       author: ['Akash'],
       text: [''],
-      commentDate: ['1990-08-11'],
+      commentDate: [this.dateFromDashboard],
     });
 
     this.rosterForm.get('comment')?.valueChanges.subscribe((value) => {
@@ -45,6 +47,7 @@ export class AddComment {
     this.employeeService.addComment(this.idFromDashboard, formValue).subscribe({
         next: (response) => {
           console.log('✅ Comment added successfully:', response);
+          window.location.reload();
         },
         error: (err) => {
           console.error('❌ Error adding comment:', err);

@@ -36,7 +36,50 @@
           </thead>
           <tbody>
             <tr *ngFor="let employee of employees">
-              <td *ngFor="let day of days" (click)="openAddComment(employee.id)">{{employee.id}}</td>
+              <td
+                *ngFor="let day of days"
+                (click)="openAddComment(employee.id, day)"
+              >
+                <div class="cell-wrapper" style="position: relative">
+                  <div
+                    class="comment-text"
+                    *ngIf="commentsMap[employee.id]?.[day]?.length"
+                  >
+                    <!-- Show first comment -->
+                    <div>• {{ commentsMap[employee.id][day][0].text }}</div>
+
+                    <!-- Show more button -->
+                    <div *ngIf="commentsMap[employee.id][day].length > 1">
+                      <button
+                        class="btn btn-sm btn-link p-0"
+                        (click)="
+                          togglePopup(employee.id, day);
+                          $event.stopPropagation()
+                        "
+                      >
+                        Show more
+                      </button>
+
+                      <!-- Floating popup -->
+                      <div
+                        class="floating-popup"
+                        *ngIf="visiblePopups[employee.id + '_' + day]"
+                        (click)="$event.stopPropagation()"
+                      >
+                        <div
+                          *ngFor="
+                            let comment of commentsMap[employee.id][day].slice(
+                              1
+                            )
+                          "
+                        >
+                          • {{ comment.text }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -44,4 +87,3 @@
     </div>
   </div>
 </div>
-

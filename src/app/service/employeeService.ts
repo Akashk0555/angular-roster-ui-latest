@@ -30,6 +30,20 @@ export class EmployeeService {
     );
   }
 
+  getComment(
+    employeeId: number,
+    ): Observable<Comment> {
+    return this.http.get<Comment>(
+      `${this.baseUrl}/${employeeId}/comments`
+    );
+  }
+
+  getCommentsByEmployeeAndDate(employeeId: number, commentDate: string): Observable<Comment[]> {
+  return this.http.get<Comment[]>(
+    `${this.baseUrl}/${employeeId}/comments/date/${commentDate}`
+  );
+}
+
   deleteComment(employeeId: number, commentId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/${employeeId}/comments/${commentId}`

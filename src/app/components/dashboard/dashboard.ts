@@ -15,48 +15,29 @@ export class Dashboard implements OnInit {
   @ViewChild('rightScroll') rightScroll!: ElementRef;
 
   employees: Employee[] = [];
+  comments: any;
+  commentsbydate: any;
   days: string[] = [];
-  //  employees: any ;
   constructor(
     private employeeService: EmployeeService,
     private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-    this.loadEmployees();
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth(); // 0 = Jan
 
     // Get total days in the month
     const totalDays = new Date(year, month + 1, 0).getDate();
-
-    // Format dates as dd-MMM-yyyy
-    const formatter = new Intl.DateTimeFormat('en-GB', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    });
-
     this.days = Array.from({ length: totalDays }, (_, i) => {
       const date = new Date(year, month, i + 1);
-      return formatter.format(date).replace(/ /g, '-'); // dd-MMM-yyyy
+      // console.log(date)
+      const localDateString = date.toISOString().split('T')[0];
+      return localDateString;
     });
 
-    //  const commentPayload: Comment = {
-    //     author: 'Test User',
-    //     text: 'This is a test comment', // or commentText if your backend expects it
-    //     commentDate: '2025-08-11',
-    //   };
-
-    //   this.employeeService.addComment(5, commentPayload).subscribe({
-    //     next: (response) => {
-    //       console.log('✅ Comment added successfully:', response);
-    //     },
-    //     error: (err) => {
-    //       console.error('❌ Error adding comment:', err);
-    //     },
-    //   });
+    this.loadEmployees();
   }
   isCollapsed = false;
 
@@ -77,10 +58,12 @@ export class Dashboard implements OnInit {
     });
   }
 
+  // API for loading Employees
   loadEmployees(): void {
     this.employeeService.getEmployees().subscribe({
       next: (data) => {
         this.employees = data;
+        this.loadAllComments(); // ✅ Load comments only after employees are ready
       },
       error: (err) => {
         console.error('Error fetching employees:', err);
@@ -88,12 +71,66 @@ export class Dashboard implements OnInit {
     });
   }
 
-  openAddComment(id:number) {
+  commentsMap: { [employeeId: number]: { [date: string]: Comment[] } } = {};
+  loadCommentByDate(id: number, date: string): void {
+    this.employeeService.getCommentsByEmployeeAndDate(id, date).subscribe({
+      next: (data: Comment[]) => {
+        if (!this.commentsMap[id]) {
+          this.commentsMap[id] = {};
+        }
+        this.commentsMap[id][date] = data;
+      },
+      error: (err) => {
+        console.error('Error fetching comments:', err);
+      },
+    });
+  }
+
+  loadAllComments(): void {
+    for (const employee of this.employees) {
+      for (const day of this.days) {
+        this.loadCommentByDate(employee.id, day);
+      }
+    }
+  }
+
+  visiblePopups: { [key: string]: boolean } = {};
+
+  togglePopup(id: number, date: string): void {
+    const key = `${id}_${date}`;
+    this.visiblePopups[key] = !this.visiblePopups[key];
+  }
+
+  openAddComment(id: number, date: string) {
+    this.loadCommentByDate(id, date);
+    //console.log(`🗓️ Date clicked: ${date}`);
+
+    this.employeeService.getComment(id).subscribe({
+      next: (data) => {
+        this.comments = data;
+        console.log(this.comments);
+      },
+      error: (err) => {
+        console.error('Error fetching employees:', err);
+      },
+    });
     const modalRef = this.modalService.open(AddComment, {
       windowClass: 'trans-back',
       backdrop: 'static',
     });
 
-    modalRef.componentInstance.idFromDashboard=id
+    modalRef.componentInstance.idFromDashboard = id;
+    modalRef.componentInstance.dateFromDashboard=date;
   }
+
+  activePopup: { id: number; date: string } | null = null;
+
+showPopup(id: number, date: string): void {
+  this.activePopup = { id, date };
+}
+
+hidePopup(): void {
+  this.activePopup = null;
+}
+
 }

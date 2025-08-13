@@ -1,7 +1,6 @@
-
 .collapse-toggle {
   width: 5px;
-height: -webkit-fill-available;
+  height: -webkit-fill-available;
   background-color: #007bff;
   cursor: pointer;
   display: flex;
@@ -9,26 +8,36 @@ height: -webkit-fill-available;
   justify-content: center;
   transition: background-color 0.3s;
 }
+.comment-text {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 4px;
+}
 
-// .inner-container {
-//   display: flex;
-//   align-items: flex-start;
-// }
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 9;
+}
 
-// .left-table {
-//   transition: all 0.3s ease;
-// }
+.floating-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  font-size: 0.85rem;
+  color: #333;
+}
 
-
-
-// .arrow-icon {
-//   display: inline-block;
-//   transition: transform 0.3s ease;
-// }
-
-// .arrow-icon.rotated {
-//   transform: rotate(180deg);
-// }
 .inner-container {
   display: flex;
   align-items: flex-start;
@@ -49,11 +58,11 @@ height: -webkit-fill-available;
   overflow-x: auto;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   white-space: nowrap;
   text-align: center;
 }
-
 
 .arrow-icon {
   display: inline-block;

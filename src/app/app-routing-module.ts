@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path:'',
     component:Dashboard
+  },
+  {
+    path:'home',
+    component:Dashboard
   }
 ];
 
