@@ -1,17 +1,56 @@
+.table-wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.left-section {
+  flex: 0 0 auto;
+}
+
+.right-section {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.scroll-container {
+  overflow: auto;
+}
+
+.fixed-height-table tbody tr {
+  height: 50px; /* Fixed row height */
+}
+
+.table th,
+.table td {
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle; /* Center content vertically */
+}
+
 .collapse-toggle {
   width: 5px;
-  height: -webkit-fill-available;
   background-color: #007bff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s;
+  height: -webkit-fill-available;
 }
-.comment-text {
-  font-size: 0.85rem;
-  color: #555;
-  margin-top: 4px;
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotated {
+  transform: rotate(180deg);
+}
+.show-more-icon {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cell-wrapper {
+  position: relative;
 }
 
 .popup-overlay {
@@ -20,55 +59,36 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 9;
+  background: rgba(0,0,0,0.4); /* Dim effect */
+  z-index: 5; /* Must be lower than popup but higher than table */
 }
 
 .floating-popup {
   position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 6px;
+  z-index: 9999; /* Very high to ensure visibility */
   top: 100%;
   left: 0;
-  z-index: 10;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  min-width: 200px;
-  font-size: 0.85rem;
-  color: #333;
+  min-width: 150px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-.inner-container {
-  display: flex;
-  align-items: flex-start;
+.right-section table td {
+  max-width: 120px;
+  min-width: 120px;
+  vertical-align: middle;
+  position: relative; /* Needed for popup positioning */
+  overflow: visible;  /* Allow popup to escape */
 }
 
-.left-table,
-.right-table {
-  max-height: 400px; /* same height for both tables */
-  overflow-y: auto;
-}
-
-.left-table {
-  flex: 0 0 auto;
-}
-
-.right-table {
-  flex: 1;
-  overflow-x: auto;
-}
-
-.table th,
-.table td {
-  white-space: nowrap;
-  text-align: center;
-}
-
-.arrow-icon {
+/* Only ellipsis for text, not for the whole cell */
+.ellipsis-text {
   display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-.arrow-icon.rotated {
-  transform: rotate(180deg);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 }
