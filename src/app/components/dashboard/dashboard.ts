@@ -67,17 +67,21 @@ export class Dashboard implements OnInit, AfterViewInit {
   }
 
   // Generate all days of the current month
-  private generateDays(): void {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const totalDays = new Date(year, month + 1, 0).getDate();
+ private generateDays(): void {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const totalDays = new Date(year, month + 1, 0).getDate();
 
-    this.days = Array.from({ length: totalDays }, (_, i) => {
-      const date = new Date(year, month, i + 1);
-      return date.toISOString().split('T')[0];
-    });
-  }
+  this.days = Array.from({ length: totalDays }, (_, i) => {
+    const date = new Date(year, month, i + 1);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  });
+}
+
 
   // Load all employees and their comments for the month
   private loadAllData(): void {

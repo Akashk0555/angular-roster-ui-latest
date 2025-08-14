@@ -27,7 +27,7 @@ export class AddComment {
       commentDate: [this.dateFromDashboard],
     });
 
-    this.rosterForm.get('comment')?.valueChanges.subscribe((value) => {
+    this.rosterForm.get('text')?.valueChanges.subscribe((value) => {
       const length = value?.length || 0;
       this.remainingChars = this.maxChars - length;
     });
