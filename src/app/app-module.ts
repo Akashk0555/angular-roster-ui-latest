@@ -7,12 +7,14 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddComment } from './components/add-comment/add-comment';
+import { SideBar } from './components/side-bar/side-bar';
 
 @NgModule({
   declarations: [
     App,
     Dashboard,
-    AddComment
+    AddComment,
+    SideBar
   ],
   imports: [
     BrowserModule,
