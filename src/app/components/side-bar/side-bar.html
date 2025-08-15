@@ -1,1 +1,25 @@
-<p>side-bar works!</p>
+<div class="sidebar-container" [class.collapsed]="isCollapsed">
+  <!-- Hamburger -->
+  <div class="hamburger" (click)="toggleSidebar()">
+    &#9776;
+  </div>
+
+  <!-- Menu Items -->
+  <ul class="menu">
+    <li *ngFor="let item of menuItems">
+      <div class="menu-item" (click)="toggleSubmenu(item)">
+        <i [class]="item.icon"></i>
+        <span *ngIf="!isCollapsed">{{ item.title }}</span>
+        <i *ngIf="!isCollapsed" class="fas fa-chevron-down dropdown-icon"
+           [class.rotated]="item.expanded"></i>
+      </div>
+
+      <!-- Submenu -->
+      <ul *ngIf="!isCollapsed && item.expanded" class="submenu">
+        <li *ngFor="let sub of item.submenus">
+          {{ sub.title }}
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

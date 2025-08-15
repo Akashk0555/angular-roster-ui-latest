@@ -9,12 +9,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddComment } from './components/add-comment/add-comment';
 import { SideBar } from './components/side-bar/side-bar';
 
+
 @NgModule({
   declarations: [
     App,
     Dashboard,
     AddComment,
-    SideBar
+    SideBar,
+    
   ],
   imports: [
     BrowserModule,
