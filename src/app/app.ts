@@ -8,4 +8,9 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('comment-app');
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 }

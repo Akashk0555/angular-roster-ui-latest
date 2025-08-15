@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddComment } from './components/add-comment/add-comment';
 import { SideBar } from './components/side-bar/side-bar';
+import { TopBar } from './components/top-bar/top-bar';
 
 @NgModule({
   declarations: [
     App,
     Dashboard,
     AddComment,
-    SideBar
+    SideBar,
+    TopBar
   ],
   imports: [
     BrowserModule,

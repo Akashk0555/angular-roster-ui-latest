@@ -1,0 +1,40 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Body layout */
+.main-body {
+  display: flex;
+  flex: 1;
+  overflow: visible; /* let child handle scroll */
+}
+
+/* Sidebar */
+app-side-bar {
+  width: 250px;
+  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+app-side-bar.collapsed {
+  width: 0;
+  transform: translateX(-100%);
+}
+
+/* Content area */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  //margin-left: 250px; /* space for sidebar */
+  transition: margin-left 0.3s ease;
+  overflow-x: auto; /* allows left/right scroll */
+  overflow-y: auto; /* allows vertical scroll */
+  white-space: nowrap; /* prevents content from wrapping so scroll works */
+}
+
+.content-area.expanded {
+  margin-left: 0;
+}
+
+

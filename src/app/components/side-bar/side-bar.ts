@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 interface MenuItem {
   title: string;
   icon: string;
@@ -12,25 +12,16 @@ interface MenuItem {
   styleUrl: './side-bar.scss'
 })
 export class SideBar {
-isCollapsed = false;
+ @Input() isCollapsed = false;
 
-  menuItems: MenuItem[] = [
+  menuItems = [
     {
-      title: 'Home',
+      title: 'Dashboard',
       icon: 'fas fa-home',
       expanded: false,
       submenus: [
-        { title: 'Dashboard' },
-        { title: 'Analytics' }
-      ]
-    },
-    {
-      title: 'Profile',
-      icon: 'fas fa-user',
-      expanded: false,
-      submenus: [
-        { title: 'View Profile' },
-        { title: 'Edit Profile' }
+        { title: 'Overview' },
+        { title: 'Stats' }
       ]
     },
     {
@@ -38,17 +29,13 @@ isCollapsed = false;
       icon: 'fas fa-cog',
       expanded: false,
       submenus: [
-        { title: 'General' },
-        { title: 'Security' }
+        { title: 'Profile' },
+        { title: 'Account' }
       ]
     }
   ];
 
-  toggleSidebar() {
-    this.isCollapsed = !this.isCollapsed;
-  }
-
-  toggleSubmenu(item: MenuItem) {
+  toggleSubmenu(item: any) {
     item.expanded = !item.expanded;
   }
 }

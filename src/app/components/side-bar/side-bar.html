@@ -1,10 +1,4 @@
 <div class="sidebar-container" [class.collapsed]="isCollapsed">
-  <!-- Hamburger -->
-  <div class="hamburger" (click)="toggleSidebar()">
-    &#9776;
-  </div>
-
-  <!-- Menu Items -->
   <ul class="menu">
     <li *ngFor="let item of menuItems">
       <div class="menu-item" (click)="toggleSubmenu(item)">
@@ -14,11 +8,8 @@
            [class.rotated]="item.expanded"></i>
       </div>
 
-      <!-- Submenu -->
       <ul *ngIf="!isCollapsed && item.expanded" class="submenu">
-        <li *ngFor="let sub of item.submenus">
-          {{ sub.title }}
-        </li>
+        <li *ngFor="let sub of item.submenus">{{ sub.title }}</li>
       </ul>
     </li>
   </ul>
