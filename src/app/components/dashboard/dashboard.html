@@ -34,6 +34,9 @@
               <td
                 *ngFor="let day of days"
                 (click)="openAddComment(employee.id, day)"
+                (contextmenu)="
+                  onRightClickCommentCell($event, employee.id, day)
+                "
               >
                 <div class="cell-wrapper d-flex align-items-center">
                   <!-- First comment -->
@@ -59,18 +62,34 @@
                       ></i>
                     </div>
 
-                    <!-- Floating popup -->
+                    <!-- Floating popup (unchanged) -->
                     <div
                       class="floating-popup"
                       *ngIf="visiblePopups[employee.id + '_' + day]"
                       (click)="$event.stopPropagation()"
                     >
                       <div
-                        *ngFor="
-                          let comment of commentsMap[employee.id][day].slice(1)
-                        "
+                        *ngFor="let comment of commentsMap[employee.id][day]"
+                        class="popup-comment d-flex justify-content-between align-items-center"
                       >
-                        • {{ comment.text }}
+                        <span>• {{ comment.text }}</span>
+                        <div class="popup-actions ms-2">
+                          <!-- Edit -->
+                          <i
+                            class="bi bi-pencil text-warning me-2"
+                            role="button"
+                          ></i>
+
+                          <!-- Delete -->
+                          <i
+                            class="bi bi-trash text-danger"
+                            role="button"
+                            (click)="
+                              deleteComment(employee.id, comment.id);
+                              $event.stopPropagation()
+                            "
+                          ></i>
+                        </div>
                       </div>
                     </div>
                   </div>

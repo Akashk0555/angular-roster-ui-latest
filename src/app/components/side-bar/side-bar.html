@@ -9,8 +9,10 @@
       </div>
 
       <ul *ngIf="!isCollapsed && item.expanded" class="submenu">
-        <li *ngFor="let sub of item.submenus">{{ sub.title }}</li>
-      </ul>
+  <li *ngFor="let sub of item.submenus">
+    <a [routerLink]="sub.route" routerLinkActive="active">{{ sub.title }}</a>
+  </li>
+</ul>
     </li>
   </ul>
 </div>

@@ -74,6 +74,19 @@
   min-width: 150px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+.popup-comment {
+  padding: 4px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-comment:last-child {
+  border-bottom: none;
+}
+
+.popup-actions i {
+  cursor: pointer;
+  font-size: 14px;
+}
 
 .right-section table td {
   max-width: 120px;

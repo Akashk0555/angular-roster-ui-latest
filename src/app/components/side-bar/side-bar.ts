@@ -20,7 +20,7 @@ export class SideBar {
       icon: 'fas fa-home',
       expanded: false,
       submenus: [
-        { title: 'Overview' },
+        { title: 'Overview' ,route:'dashboard/overview' },
         { title: 'Stats' }
       ]
     },

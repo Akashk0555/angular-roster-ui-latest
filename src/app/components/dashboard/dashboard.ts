@@ -5,7 +5,7 @@ import {
   AfterViewInit,
   ViewChild,
   ChangeDetectorRef,
-  HostListener
+  HostListener,
 } from '@angular/core';
 import { Employee } from '../../models/employee.model';
 import { EmployeeService } from '../../service/employeeService';
@@ -20,7 +20,6 @@ import { AddComment } from '../add-comment/add-comment';
   styleUrl: './dashboard.scss',
 })
 export class Dashboard implements OnInit, AfterViewInit {
-
   @ViewChild('leftScroll') leftScroll!: ElementRef;
   @ViewChild('rightScroll') rightScroll!: ElementRef;
 
@@ -66,22 +65,56 @@ export class Dashboard implements OnInit, AfterViewInit {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  deleteComment(employeeId: number, commentId: number) {
+    this.employeeService.deleteComment(employeeId, commentId).subscribe({
+      next: () => {
+        console.log(
+          `Comment ${commentId} for employee ${employeeId} deleted successfully`
+        );
+        window.location.reload();
+      },
+      error: (err) => {
+        console.error('Error deleting comment:', err);
+        alert('Failed to delete comment!');
+      },
+    });
+  }
+
   // Generate all days of the current month
- private generateDays(): void {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth();
-  const totalDays = new Date(year, month + 1, 0).getDate();
+  private generateDays(): void {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const totalDays = new Date(year, month + 1, 0).getDate();
 
-  this.days = Array.from({ length: totalDays }, (_, i) => {
-    const date = new Date(year, month, i + 1);
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
-    return `${yyyy}-${mm}-${dd}`;
-  });
-}
+    this.days = Array.from({ length: totalDays }, (_, i) => {
+      const date = new Date(year, month, i + 1);
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    });
+  }
+  onRightClickCommentCell(
+    event: MouseEvent,
+    employeeId: number,
+    day: string
+  ): void {
+    event.preventDefault(); // prevent browser right-click menu
+    console.log(event);
+    const comments = this.commentsMap[employeeId]?.[day] || [];
 
+    // If only one comment, delete it
+    if (comments.length === 1) {
+      const commentId = comments[0].id;
+      if (confirm('Delete this comment?')) {
+        this.deleteComment(employeeId, commentId);
+
+        // Remove from UI instantly
+        this.commentsMap[employeeId][day] = [];
+      }
+    }
+  }
 
   // Load all employees and their comments for the month
   private loadAllData(): void {
@@ -95,19 +128,24 @@ export class Dashboard implements OnInit, AfterViewInit {
           for (const day of this.days) {
             requests.push(
               new Promise((resolve) => {
-                this.employeeService.getCommentsByEmployeeAndDate(employee.id, day).subscribe({
-                  next: (comments: Comment[]) => {
-                    if (!this.commentsMap[employee.id]) {
-                      this.commentsMap[employee.id] = {};
-                    }
-                    this.commentsMap[employee.id][day] = comments;
-                    resolve();
-                  },
-                  error: (err) => {
-                    console.error(`Error fetching comments for ${employee.id} on ${day}`, err);
-                    resolve();
-                  },
-                });
+                this.employeeService
+                  .getCommentsByEmployeeAndDate(employee.id, day)
+                  .subscribe({
+                    next: (comments: Comment[]) => {
+                      if (!this.commentsMap[employee.id]) {
+                        this.commentsMap[employee.id] = {};
+                      }
+                      this.commentsMap[employee.id][day] = comments;
+                      resolve();
+                    },
+                    error: (err) => {
+                      console.error(
+                        `Error fetching comments for ${employee.id} on ${day}`,
+                        err
+                      );
+                      resolve();
+                    },
+                  });
               })
             );
           }
@@ -128,7 +166,6 @@ export class Dashboard implements OnInit, AfterViewInit {
     const key = `${id}_${date}`;
     this.visiblePopups[key] = !this.visiblePopups[key];
   }
-  
 
   openAddComment(id: number, date: string): void {
     // Refresh comments for that date
@@ -138,13 +175,13 @@ export class Dashboard implements OnInit, AfterViewInit {
           this.commentsMap[id] = {};
         }
         this.commentsMap[id][date] = data;
-      }
+      },
     });
 
     this.employeeService.getComment(id).subscribe({
       next: (data) => {
         this.comments = data;
-      }
+      },
     });
 
     const modalRef = this.modalService.open(AddComment, {
@@ -164,11 +201,11 @@ export class Dashboard implements OnInit, AfterViewInit {
     this.activePopup = null;
   }
 
-   isAnyPopupVisible(): boolean {
-  return Object.values(this.visiblePopups).some(v => v);
-}
+  isAnyPopupVisible(): boolean {
+    return Object.values(this.visiblePopups).some((v) => v);
+  }
 
-closeAllPopups() {
-  this.visiblePopups = {};
-}
+  closeAllPopups() {
+    this.visiblePopups = {};
+  }
 }

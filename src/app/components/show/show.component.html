@@ -1,1 +1,108 @@
-<p>show works!</p>
+<div class="inner-container">
+  <div class="container-fluid">
+    <div class="header">
+      <div class="row">
+        <div class="col-4">
+          <h4>Time Card : {{ name }}</h4>
+          <div class="toggle">
+            <input type="checkbox" id="switch" />
+            <label for="switch" class="toggle-label">
+              <span class="left">My Access</span>
+              <span class="right">My Employees</span>
+            </label>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="row" style="justify-content: end">
+            <div class="col-4">
+              <label>Period</label>
+              <select
+                class="form-select"
+                id="roleSelect"
+                aria-label="Role select"
+              >
+                <option selected disabled>-- Select --</option>
+                <option value="access">My Access</option>
+                <option value="employee">My Employee</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label class="form-label">Status</label>
+              <p>Approved By OPS Manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="row mt-4">
+      <!-- Left Side -->
+      <div class="left-side" [class.collapsed]="isCollapsed">
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-start-0"
+              placeholder="Search name..."
+            />
+          </div>
+        </div>
+
+        <div class="card mb-2" *ngFor="let emp of employees">
+          <div class="card-body p-2">
+            <strong>{{ emp.name }}</strong
+            ><br />
+            <small class="text-muted">Site: {{ emp.site }}</small
+            ><br />
+            <span class="status-badge">{{ emp.status }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapse Toggle -->
+      <div class="collapse-toggle" (click)="toggleTable()">
+        <span class="arrow-icon" [class.rotated]="isCollapsed">&#9664;</span>
+      </div>
+
+      <!-- Right Side -->
+      <div class="right-side" [class.expanded]="isCollapsed">
+        <div class="p-2 border rounded bg-primary" style="color: aliceblue;">
+          <h5>Michael Johnson</h5>
+        </div>
+        <div class="table-container">
+          <table class="table table-striped table-bordered custom-table">
+            <thead class="table-header-blue">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Site</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Department</th>
+                <th>Shift</th>
+                <th>Manager</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emp of employees; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.site }}</td>
+                <td>{{ emp.status }}</td>
+                <td>{{ emp.role || "Staff" }}</td>
+                <td>{{ emp.department || "Operations" }}</td>
+                <td>{{ emp.shift || "Morning" }}</td>
+                <td>{{ emp.manager || "N/A" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

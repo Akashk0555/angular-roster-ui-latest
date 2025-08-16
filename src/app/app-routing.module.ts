@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HttpClient } from '@angular/common/http';
+import { ShowComponent } from './components/show/show.component';
 
 const routes: Routes = [
+  { path: '', component: Dashboard }, // 👈 This will be loaded on page reload
+
   {
-    path:'',
-    component:Dashboard
-  },
-  {
-    path:'home',
-    component:Dashboard
+    path: 'dashboard',
+    children: [
+      { path: 'overview', component: ShowComponent }
+    ]
   }
 ];
 
