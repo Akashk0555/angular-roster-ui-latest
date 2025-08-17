@@ -78,7 +78,7 @@ h4{
   border-right: 1px solid #ddd;
   padding: 10px;
   transition: all 0.3s ease;
-  max-height: 550px;
+  max-height: 600px;
   overflow-y: scroll;
 }
 
@@ -98,7 +98,7 @@ h4{
 }
 
 .collapse-toggle {
-  width: 5px;
+  width: 3px;
   background-color: #007bff;
   cursor: pointer;
   display: flex;
@@ -172,11 +172,61 @@ h4{
 }
 
 /* Ensure header text stands out */
-.table-header-blue th {
-  text-align: center;
-  vertical-align: middle;
-}
+
 .table.custom-table thead.table-header-blue th {
   background-color: #007bff !important; 
   color: #fff !important;
 }
+
+/* Summary table wrapper */
+/* Wrapper for summary table */
+.summary-wrapper {
+  display: flex;
+  align-items: flex-start;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+
+
+.summary-table {
+  font-size: 0.85rem;
+  
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 0.35rem 0.5rem;
+}
+
+
+
+
+.table-header-blue {
+  background-color: #0d6efd; /* Bootstrap blue */
+  color: #fff;
+}
+
+.pagination-bottom-right {
+  position: absolute;
+  padding-top: 5px;
+  right: 8px;
+}
+
+.summary-table-container {
+  max-width: 600px;
+}
+
+.left-side {
+  max-width: 280px;
+}
+.action-buttons {
+  position: fixed;       /* stays visible */
+  bottom: 20px;          /* distance from bottom */
+  right: 30px;           /* align to right side */
+  display: flex;
+  gap: 10px;
+  z-index: 1050;         /* above other content */
+}
+
+

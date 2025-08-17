@@ -1,36 +1,32 @@
 <div class="inner-container">
   <div class="container-fluid">
-    <div class="header">
-      <div class="row">
-        <div class="col-4">
-          <h4>Time Card : {{ name }}</h4>
-          <div class="toggle">
-            <input type="checkbox" id="switch" />
-            <label for="switch" class="toggle-label">
-              <span class="left">My Access</span>
-              <span class="right">My Employees</span>
-            </label>
-          </div>
+    
+    <!-- Header -->
+    <div class="header row align-items-center">
+      <div class="col-4">
+        <h4>Time Card : {{ name }}</h4>
+        <div class="toggle">
+          <input type="checkbox" id="switch" />
+          <label for="switch" class="toggle-label">
+            <span class="left">My Access</span>
+            <span class="right">My Employees</span>
+          </label>
         </div>
-        <div class="col-8">
-          <div class="row" style="justify-content: end">
-            <div class="col-4">
-              <label>Period</label>
-              <select
-                class="form-select"
-                id="roleSelect"
-                aria-label="Role select"
-              >
-                <option selected disabled>-- Select --</option>
-                <option value="access">My Access</option>
-                <option value="employee">My Employee</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
-            <div class="col-4">
-              <label class="form-label">Status</label>
-              <p>Approved By OPS Manager</p>
-            </div>
+      </div>
+      <div class="col-8">
+        <div class="row justify-content-end">
+          <div class="col-4">
+            <label>Period</label>
+            <select class="form-select" id="roleSelect">
+              <option selected disabled>-- Select --</option>
+              <option value="access">My Access</option>
+              <option value="employee">My Employee</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="col-4">
+            <label class="form-label">Status</label>
+            <p class="mb-0">Approved By OPS Manager</p>
           </div>
         </div>
       </div>
@@ -38,27 +34,23 @@
 
     <!-- Content Area -->
     <div class="row mt-4">
+      
       <!-- Left Side -->
       <div class="left-side" [class.collapsed]="isCollapsed">
-        <div class="mb-3">
-          <div class="input-group">
-            <span class="input-group-text bg-white border-end-0">
-              <i class="bi bi-search"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control border-start-0"
-              placeholder="Search name..."
-            />
-          </div>
+        
+        <!-- Search -->
+        <div class="input-group mb-3">
+          <span class="input-group-text bg-white border-end-0">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" class="form-control border-start-0" placeholder="Search name..." />
         </div>
 
+        <!-- Employee List -->
         <div class="card mb-2" *ngFor="let emp of employees">
           <div class="card-body p-2">
-            <strong>{{ emp.name }}</strong
-            ><br />
-            <small class="text-muted">Site: {{ emp.site }}</small
-            ><br />
+            <strong>{{ emp.name }}</strong><br />
+            <small class="text-muted">Site: {{ emp.site }}</small><br />
             <span class="status-badge">{{ emp.status }}</span>
           </div>
         </div>
@@ -71,37 +63,79 @@
 
       <!-- Right Side -->
       <div class="right-side" [class.expanded]="isCollapsed">
-        <div class="p-2 border rounded bg-primary" style="color: aliceblue;">
-          <h5>Michael Johnson</h5>
+        
+        <!-- Profile Header -->
+        <div class="p-2 border rounded bg-primary text-white mb-3">
+          <h5 class="mb-0">Michael Johnson</h5>
         </div>
-        <div class="table-container">
-          <table class="table table-striped table-bordered custom-table">
-            <thead class="table-header-blue">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Site</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Department</th>
-                <th>Shift</th>
-                <th>Manager</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let emp of employees; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ emp.name }}</td>
-                <td>{{ emp.site }}</td>
-                <td>{{ emp.status }}</td>
-                <td>{{ emp.role || "Staff" }}</td>
-                <td>{{ emp.department || "Operations" }}</td>
-                <td>{{ emp.shift || "Morning" }}</td>
-                <td>{{ emp.manager || "N/A" }}</td>
-              </tr>
-            </tbody>
-          </table>
+        
+        <!-- Main Table -->
+        <div class="table-wrapper position-relative">
+          <div class="table-container">
+            <table class="table table-striped table-bordered custom-table">
+              <thead class="table-header-blue">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Site</th>
+                  <th>Status</th>
+                  <th>Role</th>
+                  <th>Department</th>
+                  <th>Shift</th>
+                  <th>Manager</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of employees; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ emp.name }}</td>
+                  <td>{{ emp.site }}</td>
+                  <td>{{ emp.status }}</td>
+                  <td>{{ emp.role || "Staff" }}</td>
+                  <td>{{ emp.department || "Operations" }}</td>
+                  <td>{{ emp.shift || "Morning" }}</td>
+                  <td>{{ emp.manager || "N/A" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination (Fixed to bottom-right of table wrapper) -->
+          <div class="pagination-bottom-right">
+            <button class="btn btn-sm btn-outline-primary me-2">Prev</button>
+            <button class="btn btn-sm btn-outline-primary">Next</button>
+          </div>
         </div>
+
+        <!-- Summary Table -->
+        <div class="summary-wrapper mt-4">
+          <div class="table-container summary-table-container">
+            <table class="table table-striped table-bordered custom-table summary-table">
+              <thead class="table-header-blue">
+                <tr>
+                  <th>#</th>
+                  <th>Task</th>
+                  <th>Hours</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>System Maintenance</td><td>4</td><td>2025-08-10</td><td>Completed</td></tr>
+                <tr><td>2</td><td>Report Analysis</td><td>3</td><td>2025-08-11</td><td>In Progress</td></tr>
+                <tr><td>3</td><td>Client Meeting</td><td>2</td><td>2025-08-12</td><td>Pending</td></tr>
+                <tr><td>4</td><td>Team Training</td><td>5</td><td>2025-08-13</td><td>Completed</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+    <button class="btn btn-success me-2">Export</button>
+    <button class="btn btn-primary me-2">Approve</button>
+    <button class="btn btn-danger">Cancel</button>
+  </div>
+
       </div>
     </div>
   </div>
