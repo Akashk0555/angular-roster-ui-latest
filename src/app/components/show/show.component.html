@@ -74,29 +74,33 @@
           <div class="table-container">
             <table class="table table-striped table-bordered custom-table">
               <thead class="table-header-blue">
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Site</th>
-                  <th>Status</th>
-                  <th>Role</th>
-                  <th>Department</th>
-                  <th>Shift</th>
-                  <th>Manager</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let emp of employees; let i = index">
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ emp.name }}</td>
-                  <td>{{ emp.site }}</td>
-                  <td>{{ emp.status }}</td>
-                  <td>{{ emp.role || "Staff" }}</td>
-                  <td>{{ emp.department || "Operations" }}</td>
-                  <td>{{ emp.shift || "Morning" }}</td>
-                  <td>{{ emp.manager || "N/A" }}</td>
-                </tr>
-              </tbody>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Site</th>
+          <th>Status</th>
+          <th>Role</th>
+          <th>Department</th>
+          <th>Shift</th>
+          <th>Manager</th>
+          <th>Email</th>          <!-- NEW COLUMN -->
+          <th>Phone</th>          <!-- NEW COLUMN -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.site }}</td>
+          <td>{{ emp.status }}</td>
+          <td>{{ emp.role || "Staff" }}</td>
+          <td>{{ emp.department || "Operations" }}</td>
+          <td>{{ emp.shift || "Morning" }}</td>
+          <td>{{ emp.manager || "N/A" }}</td>
+          <td>{{ emp.email || "example@email.com" }}</td> <!-- NEW -->
+          <td>{{ emp.phone || "000-000-0000" }}</td>     <!-- NEW -->
+        </tr>
+      </tbody>
             </table>
           </div>
 
