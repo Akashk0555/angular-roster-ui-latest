@@ -11,6 +11,7 @@ import { SideBar } from './components/side-bar/side-bar';
 import { TopBar } from './components/top-bar/top-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowComponent } from './components/show/show.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ShowComponent } from './components/show/show.component';
     AddComment,
     SideBar,
     TopBar,
-    ShowComponent
+    ShowComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
