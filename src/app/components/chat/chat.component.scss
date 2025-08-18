@@ -1,0 +1,86 @@
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  height: 90vh;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.chat-window {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+.chat-message {
+  display: flex;
+  margin: 8px 0;
+
+  &.user {
+    justify-content: flex-end;
+    .bubble {
+      background: #007bff;
+      color: white;
+      border-radius: 12px 12px 0 12px;
+    }
+  }
+
+  &.assistant {
+    justify-content: flex-start;
+    .bubble {
+      background: #e6e6e6;
+      border-radius: 12px 12px 12px 0;
+    }
+  }
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+
+  /* ✅ makes long text wrap properly */
+  word-wrap: break-word;
+  white-space: pre-wrap;  // preserves line breaks from response
+  overflow-wrap: break-word;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 8px;
+  background: #fff;
+
+  textarea {
+    flex: 1;
+    resize: none;
+    border: none;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+    border-radius: 8px;
+    background: #f4f4f4;
+    margin-right: 8px;
+  }
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  button:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+  }
+}
