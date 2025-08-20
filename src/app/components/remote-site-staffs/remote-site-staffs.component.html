@@ -1,0 +1,28 @@
+<table class="table table-bordered text-center resizable-table">
+  <thead class="table-header">
+    <tr>
+      <th *ngFor="let header of headers" #resizable>
+        {{ header }}
+        <span class="resize-handle" (mousedown)="startResizing($event, resizable)"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows">
+      <td>
+        <div class="date-box">
+          <div>{{ getFormattedDate(row.date).weekday }}</div>
+          <div>{{ getFormattedDate(row.date).day }}</div>
+          <div>{{ getFormattedDate(row.date).monthYear }}</div>
+        </div>
+      </td>
+      <td>{{ row.col2 }}</td>
+      <td>{{ row.col3 }}</td>
+      <td>{{ row.col4 }}</td>
+      <td>{{ row.col5 }}</td>
+      <td>{{ row.col6 }}</td>
+      <td>{{ row.col7 }}</td>
+      <td>{{ row.col8 }}</td>
+    </tr>
+  </tbody>
+</table>

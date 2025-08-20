@@ -4,6 +4,7 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { HttpClient } from '@angular/common/http';
 import { ShowComponent } from './components/show/show.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remote-site-staffs.component';
 
 const routes: Routes = [
   { path: '', component: Dashboard }, // 👈 This will be loaded on page reload
@@ -12,6 +13,14 @@ const routes: Routes = [
     path: 'dashboard',
     children: [
       { path: 'overview', component: ShowComponent },
+      {path:'stats',component:ChatComponent}
+      
+    ]
+  },
+  {
+    path: 'settings',
+    children: [
+      { path: 'profile', component: RemoteSiteStaffsComponent },
       {path:'stats',component:ChatComponent}
       
     ]

@@ -1,0 +1,33 @@
+.resizable-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.resizable-table th,
+.resizable-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  position: relative;
+}
+
+.table-header th {
+  background-color: red;
+  color: white;
+  user-select: none; /* prevents text selection while resizing */
+}
+
+.date-box {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+}

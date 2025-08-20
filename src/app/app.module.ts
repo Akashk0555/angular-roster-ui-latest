@@ -12,6 +12,7 @@ import { TopBar } from './components/top-bar/top-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowComponent } from './components/show/show.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remote-site-staffs.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ChatComponent } from './components/chat/chat.component';
     SideBar,
     TopBar,
     ShowComponent,
-    ChatComponent
+    ChatComponent,
+    RemoteSiteStaffsComponent
   ],
   imports: [
     BrowserModule,
