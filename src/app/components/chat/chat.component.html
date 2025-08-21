@@ -1,6 +1,8 @@
 <div class="chat-wrapper">
   <h2>Groq Chat</h2>
 
+ 
+
   <!-- Chat messages -->
   <div class="chat-window">
     <div *ngFor="let msg of messages" class="chat-message" [ngClass]="msg.role">
@@ -23,3 +25,17 @@
     </button>
   </div>
 </div>
+ <table class="date-header-table">
+    <thead>
+      <tr>
+        <th>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <span>{{ currentDate | date:'EEE' }}</span> <!-- MON -->
+            <span>{{ currentDate | date:'dd' }}</span> <!-- DD -->
+            <span>{{ currentDate | date:'MMMM' }}</span> 
+            <span>{{ currentDate | date:'yyyy' }}</span> <!-- YYYY -->
+          </div>
+        </th>
+      </tr>
+    </thead>
+  </table>

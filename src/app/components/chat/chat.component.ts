@@ -13,6 +13,7 @@ interface ChatMessage {
   
 })
 export class ChatComponent {
+  currentDate = new Date();
 userPrompt = '';
   messages: ChatMessage[] = [];
   isLoading = false;
