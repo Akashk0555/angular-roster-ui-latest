@@ -84,3 +84,47 @@
     cursor: not-allowed;
   }
 }
+.toggle-group {
+      border-radius: 25px !important;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    :host ::ng-deep .mat-button-toggle-group {
+      background-color: #e8e8e8;
+      border-radius: 25px;
+      box-shadow: none !important;
+    }
+
+    :host ::ng-deep .mat-button-toggle {
+    border: none !important;
+    background: transparent;
+    color: #666;
+    font-weight: 500;
+    min-width: 140px;
+    transition: all 0.3s ease;
+    padding: 3px 0;
+    border-radius: 50px;
+    }
+
+    :host ::ng-deep .mat-button-toggle-checked {
+      background: linear-gradient(135deg, #0038A8, #0038A8) !important;
+      color: white !important;
+    }
+
+    :host ::ng-deep .mat-button-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    :host ::ng-deep .mat-button-toggle-label-content {
+      line-height: 1;
+    padding: 0px;
+    font-size: 12px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      box-shadow: none !important;
+    }

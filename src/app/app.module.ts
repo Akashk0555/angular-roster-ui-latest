@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowComponent } from './components/show/show.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remote-site-staffs.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remot
     TopBar,
     ShowComponent,
     ChatComponent,
-    RemoteSiteStaffsComponent
+    RemoteSiteStaffsComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remot
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonToggleModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

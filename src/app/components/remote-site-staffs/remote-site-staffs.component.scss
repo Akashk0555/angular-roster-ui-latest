@@ -2,7 +2,6 @@
   border-collapse: collapse;
   width: 100%;
 }
-
 .resizable-table th,
 .resizable-table td {
   border: 1px solid #ccc;
@@ -11,16 +10,75 @@
 }
 
 .table-header th {
-  background-color: red;
-  color: white;
+  background-color: #c5daff;
+  color: rgb(0, 0, 0);
   user-select: none; /* prevents text selection while resizing */
 }
-
 .date-box {
+  background: #c5daff;
+  width: 20px;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.weekday,
+.day,
+.year {
+  height: 15px;
+}
+
+.day {
+  transform: translateY(-5px);
+}
+
+.weekday {
+  transform: translateY(-10px);
+}
+
+.title-text {
+  margin: 0; /* Removes default h4 margin */
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.date-legend-wrapper {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
-  line-height: 1.2;
+  align-items: flex-end; /* Optional: aligns legend to the right */
+}
+.force-clockout.text-danger {
+  position: absolute;
+  margin-top: 60px;
+  font-size: 14px;
+}
+
+.date-picker-group {
+  font-size: 1rem;
+}
+
+.date-label {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.date-dropdown {
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 1rem;
+  background: #fafafa;
+  width: auto; /* Let width adjust automatically */
+  min-width: 120px; /* Optional: set a minimum width */
+  max-width: 100%; /* Prevent overflow */
+  display: inline-block; /* Ensure it respects content width */
+}
+
+.date-dropdown {
+  transition: width 0.2s ease-in-out;
 }
 
 .resize-handle {
@@ -30,4 +88,224 @@
   width: 5px;
   height: 100%;
   cursor: col-resize;
+}
+
+.legend-container {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  position: relative;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.info-icon {
+  background-color: #4285f4;
+}
+
+.comment-icon {
+  background-color: #ea4335;
+}
+
+/* Add to remote-site-staffs.component.css */
+.assignment-card {
+  background: #e9f0ff;
+  border: 1px solid #dbeafe;
+  border-radius: 4px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.assignment-info {
+  font-size: 1.15rem;
+  color: #143a7b;
+  margin-bottom: 20px;
+}
+
+.assignment-actions .clock-in img,
+.assignment-actions .clock-out img {
+  margin-bottom: 4px;
+}
+
+.btn-clockin {
+  border-radius: 20px;
+  border: none;
+  height: 25px;
+  font-size: 13px;
+  width: 81px;
+  color: #099609;
+  background: #cdeccd;
+}
+
+.btn-clockout {
+  border-radius: 20px;
+  height: 25px;
+  border: none;
+  font-size: 13px;
+  color: #f3465b;
+  background: #dba8ae;
+}
+.clock-time {
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+
+
+.open-shift-card {
+  background: #e9f0ff;
+  border: 1px solid #dbeafe;
+  border-radius: 4px;
+  padding: 10px 24px;
+  margin-bottom: 12px;
+}
+
+.btn-preview {
+  background: #219a1a;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 2px 18px 2px 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-preview svg {
+  margin-left: 4px;
+}
+
+@media (max-width: 1200px) {
+  .header-container,
+  .assignment-card,
+  .open-shift-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 10px !important;
+  }
+
+  .legend-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 8px;
+  }
+
+  .assignment-actions {
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .force-clockout {
+    margin-top: 10px;
+    position: static !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner-container {
+    padding: 8px;
+  }
+
+  .header-container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding-bottom: 8px;
+  }
+
+  .date-legend-wrapper {
+    align-items: flex-start !important;
+    width: 100%;
+  }
+
+  .legend-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .assignment-card,
+  .open-shift-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 8px !important;
+  }
+
+  .assignment-actions {
+    flex-direction: row;
+    width: 100%;
+    margin-top: 8px;
+    justify-content: flex-start !important;
+  }
+
+  .force-clockout {
+    margin-top: 8px;
+    position: static !important;
+    font-size: 13px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .resizable-table th,
+  .resizable-table td {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .date-box {
+    width: 18px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-text {
+    font-size: 16px;
+  }
+
+  .date-label,
+  .legend-item span,
+  .assignment-info,
+  .clock-time {
+    font-size: 11px !important;
+  }
+
+  .btn-clockin,
+  .btn-clockout,
+  .btn-preview {
+    font-size: 11px !important;
+    padding: 2px 10px !important;
+  }
+
+  .date-box {
+    width: 14px;
+    font-size: 9px;
+  }
 }
