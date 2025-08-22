@@ -18,6 +18,9 @@
   background: #c5daff;
   width: 20px;
 }
+.comment-cell{
+  width: 10px;
+}
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -130,7 +133,7 @@
 /* Add to remote-site-staffs.component.css */
 .assignment-card {
   background: #e9f0ff;
-  border: 1px solid #dbeafe;
+  border: 1px solid #79a7e3;
   border-radius: 4px;
   padding: 10px 20px;
   display: flex;
@@ -143,7 +146,20 @@
   color: #143a7b;
   margin-bottom: 20px;
 }
+.table-scroll-container {
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
 
+/* Optional: Keep table header sticky */
+.table-scroll-container thead th {
+  position: sticky;
+  top: 0;
+  background-color: #c5daff;
+  z-index: 1;
+}
 .assignment-actions .clock-in img,
 .assignment-actions .clock-out img {
   margin-bottom: 4px;
@@ -172,11 +188,9 @@
   margin-bottom: 2px;
 }
 
-
-
 .open-shift-card {
   background: #e9f0ff;
-  border: 1px solid #dbeafe;
+  border: 1px solid #7da7de;
   border-radius: 4px;
   padding: 10px 24px;
   margin-bottom: 12px;
@@ -308,4 +322,28 @@
     width: 14px;
     font-size: 9px;
   }
+}
+
+.paycode-dropdown-btn {
+  border: none;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+
+  align-items: center;
+  gap: 6px;
+}
+
+.paycode-popup {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.paycode-option {
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.paycode-option:hover {
+  background: #c5daff;
 }

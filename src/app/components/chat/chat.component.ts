@@ -54,4 +54,17 @@ userPrompt = '';
       },
     });
   }
+
+  dropdownOpen = false;
+
+onDownArrowClick() {
+  this.dropdownOpen = !this.dropdownOpen;
+}
+selectedOption = '';
+
+setOption(option: string) {
+  this.selectedOption = option;
+  this.dropdownOpen = false; // Optionally close dropdown after selection
+}
+
 }

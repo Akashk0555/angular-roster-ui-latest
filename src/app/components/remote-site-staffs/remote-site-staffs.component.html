@@ -8,7 +8,7 @@
           <option selected disabled>Date Selection</option>
           <option>Current Month</option>
           <option>Next Month</option>
-          <option>Current Pay</option>
+          <option>Current Pay roll Period</option>
         </select>
         <span class="calendar-icon">
           <svg
@@ -26,12 +26,12 @@
       </div>
       <div class="legend-container">
         <div class="legend-item">
-          <img src="assets/payandshift.png" width="16" height="16" />
+          <img src="assets/Info.png" width="20" height="16" />
           <span>Multiple Shifts/Pay codes</span>
         </div>
         <div class="legend-item">
           <img src="assets/comment.png" width="16" height="16" />
-          <span>Comments Inserted</span>
+          <span>Comments Available</span>
         </div>
         <div class="legend-item">
           <img src="assets/temp-emp.png" width="16" height="16" />
@@ -55,105 +55,16 @@
         <button class="btn-clockout">Force Clock Out</button>
       </div>
       <div class="assignment-actions d-flex align-items-center">
+         <!-- Clock In/Out Section -->
         <div class="clock-in d-flex flex-column align-items-center me-4">
-          <svg
-            width="30px"
-            height="30px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="style=linear">
-              <g id="clock">
-                <path
-                  id="vector"
-                  d="M21 13C21 17.968 16.968 22 12 22C7.032 22 3 17.968 3 13C3 8.032 7.032 4 12 4C16.968 4 21 8.032 21 13Z"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="vector_2"
-                  d="M15.339 15.862L12.549 14.197C12.063 13.909 11.667 13.216 11.667 12.649V8.95898"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="line"
-                  d="M18 2L21.747 5.31064"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="line_2"
-                  d="M6 2L2.25304 5.31064"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </g>
-            </g>
-          </svg>
+          <img src="assets/clockin.png" width="30" height="30" />
           <span class="clock-time text-dark fw-bold">{{ clockInTime }}</span>
           <button class="btn-clockin" (click)="onClockIn()">Clock In</button>
         </div>
         <div class="clock-out d-flex flex-column align-items-center">
-          <svg
-            width="30px"
-            height="30px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="style=linear">
-              <g id="clock">
-                <path
-                  id="vector"
-                  d="M21 13C21 17.968 16.968 22 12 22C7.032 22 3 17.968 3 13C3 8.032 7.032 4 12 4C16.968 4 21 8.032 21 13Z"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="vector_2"
-                  d="M15.339 15.862L12.549 14.197C12.063 13.909 11.667 13.216 11.667 12.649V8.95898"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="line"
-                  d="M18 2L21.747 5.31064"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-                <path
-                  id="line_2"
-                  d="M6 2L2.25304 5.31064"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </g>
-            </g>
-          </svg>
-          <span class="clock-time text-dark fw-bold">06 : 32</span>
-          <button class="btn-clockout">Clock Out</button>
+          <img src="assets/clockout.png" width="28" height="28" />
+          <span class="clock-time text-dark fw-bold">{{ clockOutTime }}</span>
+          <button class="btn-clockout" (click)="onClockOut()">Clock Out</button>
         </div>
       </div>
     </div>
@@ -161,7 +72,7 @@
     <!-- Open Shift Available Card -->
     <div class="open-shift-card d-flex align-items-center mb-3">
       <span class="fw-bold text-primary ms-2">Open Shift Available</span>
-      <button class="btn-preview ms-3">
+      <button class="btn-preview ms-3" (click)="openOpenShiftDialog()">
         Preview
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -178,39 +89,74 @@
       </button>
     </div>
 
-    <table class="table table-bordered text-center resizable-table">
-      <thead class="table-header">
-        <tr>
-          <th *ngFor="let header of headers" #resizable>
-            {{ header }}
-            <span
-              class="resize-handle"
-              (mousedown)="startResizing($event, resizable)"
-            ></span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let row of rows">
-          <td class="date-box">
-            <div>
-              <div class="weekday">
-                {{ getFormattedDate(row.date).weekday }}
+    <div class="table-scroll-container">
+      <table class="table table-bordered text-center resizable-table">
+        <thead class="table-header">
+          <tr>
+            <th *ngFor="let header of headers" #resizable>
+              {{ header }}
+              <span
+                class="resize-handle"
+                (mousedown)="startResizing($event, resizable)"
+              ></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td class="date-box">
+              <div>
+                <div class="weekday">
+                  {{ getFormattedDate(row.date).weekday }}
+                </div>
+                <div class="day">{{ getFormattedDate(row.date).day }}</div>
+                <div class="year">
+                  {{ getFormattedDate(row.date).monthYear }}
+                </div>
               </div>
-              <div class="day">{{ getFormattedDate(row.date).day }}</div>
-              <div class="year">{{ getFormattedDate(row.date).monthYear }}</div>
-            </div>
-          </td>
-          <td>{{ row.col2 }}</td>
-          <td>{{ row.col3 }}</td>
-          <td>{{ row.col4 }}</td>
-          <td>{{ row.col5 }}</td>
-          <td>{{ row.col6 }}</td>
-          <td>{{ row.col7 }}</td>
-          <td>{{ row.col8 }}</td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+            <td>{{ row.col2 }}</td>
+            <td>{{ row.col3 }}</td>
+            <td>{{ row.col4 }}</td>
+            <td>{{ row.col5 }}</td>
+            <td>{{ row.col6 }}</td>
+            <td>{{ row.col7 }}</td>
+            <td>
+              <div class="paycode-dropdown-wrapper" style="position: relative">
+                {{ row.col8 }}
+                <button
+                  class="paycode-dropdown-btn"
+                  (click)="togglePaycodePopup(row)"
+                >
+                  <i class="bi bi-caret-down-fill"></i>
+                </button>
+                <img src="assets/Info.png" width="20" height="16" />
+              </div>
+            </td>
+            <td class="comment-cell">
+              <button
+                class="comment-icon-btn"
+                (click)="onCommentClick()"
+                style="
+                  background: none;
+                  border: none;
+                  padding: 0;
+                  cursor: pointer;
+                "
+                aria-label="Comment"
+              >
+                <img
+                  src="assets/comment.png"
+                  width="20"
+                  height="16"
+                  alt="Comment"
+                />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <!-- Footer -->
 </div>

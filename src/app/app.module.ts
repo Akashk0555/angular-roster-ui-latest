@@ -14,7 +14,10 @@ import { ShowComponent } from './components/show/show.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remote-site-staffs.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { OpenShifts } from './components/remote-site-staffs/open-shifts/open-shifts';
+import {MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     App,
@@ -25,15 +28,19 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     ShowComponent,
     ChatComponent,
     RemoteSiteStaffsComponent,
+    OpenShifts,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+   
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
