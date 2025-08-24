@@ -1,16 +1,18 @@
 <div class="inner-container">
   <!-- Header -->
+
+
   <div class="header-container">
+  <div class="title-date-wrapper d-flex justify-content-between align-items-center w-100">
     <h4 class="title-text">Roster : Shambhavi</h4>
-    <div class="date-legend-wrapper">
-      <div class="date-picker-group d-flex align-items-center">
-        <select id="datePicker" class="date-dropdown me-2">
-          <option selected disabled>Date Selection</option>
-          <option>Current Month</option>
-          <option>Next Month</option>
-          <option>Current Pay roll Period</option>
-        </select>
-        <span class="calendar-icon">
+    <div class="date-picker-group d-flex align-items-center">
+      <select id="datePicker" class="date-dropdown me-2">
+        <option selected disabled>Date Selection</option>
+        <option>Current Month</option>
+        <option>Next Month</option>
+        <option>Current Pay roll Period</option>
+      </select>
+      <span class="calendar-icon">
           <svg
             fill="#000000"
             width="20px"
@@ -23,8 +25,11 @@
             ></path>
           </svg>
         </span>
-      </div>
-      <div class="legend-container">
+    </div>
+  </div>
+
+  <!-- Legends move below in mobile -->
+  <div class="legend-container">
         <div class="legend-item">
           <img src="assets/Info.png" width="20" height="16" />
           <span>Multiple Shifts/Pay codes</span>
@@ -38,8 +43,8 @@
           <span>Temporary Employee</span>
         </div>
       </div>
-    </div>
-  </div>
+</div>
+
 
   <!-- Main Content -->
   <div class="main-content">

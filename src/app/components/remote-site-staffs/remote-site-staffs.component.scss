@@ -26,6 +26,20 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 15px;
+  flex-wrap: wrap; /* allow wrapping if needed */
+}
+
+/* Legends inline by default */
+// .legend-container {
+//   display: flex;
+//   gap: 1rem;
+// }
+
+.legend-container {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  position: relative;
 }
 
 .weekday,
@@ -93,12 +107,7 @@
   cursor: col-resize;
 }
 
-.legend-container {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  position: relative;
-}
+
 
 .legend-item {
   display: flex;
@@ -213,115 +222,177 @@
   margin-left: 4px;
 }
 
-@media (max-width: 1200px) {
-  .header-container,
-  .assignment-card,
-  .open-shift-card {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 10px !important;
-  }
+// @media (max-width: 1200px) {
+//   .header-container,
+//   .assignment-card,
+//   .open-shift-card {
+//     flex-direction: column !important;
+//     align-items: flex-start !important;
+//     padding: 10px !important;
+//   }
 
-  .legend-container {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 8px;
-  }
+//   .legend-container {
+//     flex-wrap: wrap;
+//     gap: 0.5rem;
+//     margin-top: 8px;
+//   }
 
-  .assignment-actions {
-    margin-top: 10px;
-    width: 100%;
-    justify-content: flex-start !important;
-  }
+//   .assignment-actions {
+//     margin-top: 10px;
+//     width: 100%;
+//     justify-content: flex-start !important;
+//   }
 
-  .force-clockout {
-    margin-top: 10px;
-    position: static !important;
-  }
+//   .force-clockout {
+//     margin-top: 10px;
+//     position: static !important;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .inner-container {
+//     padding: 8px;
+//   }
+
+//   .header-container {
+//     flex-direction: column !important;
+//     align-items: flex-start !important;
+//     padding-bottom: 8px;
+//   }
+
+//   .date-legend-wrapper {
+//     align-items: flex-start !important;
+//     width: 100%;
+//   }
+
+//   .legend-container {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     gap: 6px;
+//     margin-top: 8px;
+//   }
+
+//   .assignment-card,
+//   .open-shift-card {
+//     flex-direction: column !important;
+//     align-items: flex-start !important;
+//     padding: 8px !important;
+//   }
+
+//   .assignment-actions {
+//     flex-direction: row;
+//     width: 100%;
+//     margin-top: 8px;
+//     justify-content: flex-start !important;
+//   }
+
+//   .force-clockout {
+//     margin-top: 8px;
+//     position: static !important;
+//     font-size: 13px;
+//   }
+
+//   .table-responsive {
+//     overflow-x: auto;
+//   }
+
+//   .resizable-table th,
+//   .resizable-table td {
+//     font-size: 12px;
+//     padding: 6px;
+//   }
+
+//   .date-box {
+//     width: 18px;
+//     font-size: 11px;
+//   }
+//}
+
+/* Default (desktop/tablet) */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* allow wrapping if needed */
 }
 
+/* Legends inline by default */
+.legend-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile View */
 @media (max-width: 768px) {
-  .inner-container {
-    padding: 8px;
-  }
-
   .header-container {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding-bottom: 8px;
+    flex-direction: column; /* stack title/date and legends */
+    align-items: stretch;
   }
 
+  /* Title + Date Picker on one row */
   .date-legend-wrapper {
-    align-items: flex-start !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    margin-top: 0.5rem;
   }
 
+  /* Legends below */
   .legend-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-top: 8px;
+    display: ruby;
+    flex-direction: column; /* stack vertically */
+    gap: 0.5rem;
+    margin-top: 0.75rem;
   }
 
   .assignment-card,
   .open-shift-card {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 8px !important;
+    flex-direction: column;   /* stack content vertically */
+    align-items: flex-start;  /* align text left */
+    gap: 0.75rem;
+    text-align: left;
+    flex-wrap: wrap;          /* allow wrapping of long text */
+    word-break: break-word;   /* break long words if needed */
+  }
+.assignment-info{
+  margin-bottom: 0;
+}
+  /* Force text inside to wrap */
+  .assignment-info,
+  .force-clockout,
+  .open-shift-card span {
+    white-space: normal;  /* let text wrap */
+    width: 100%;          /* take full width */
   }
 
-  .assignment-actions {
-    flex-direction: row;
+  /* Make buttons full width for better touch usability */
+  .btn-clockin,
+  .btn-clockout{
     width: 100%;
-    margin-top: 8px;
-    justify-content: flex-start !important;
   }
-
-  .force-clockout {
-    margin-top: 8px;
-    position: static !important;
-    font-size: 13px;
+  .btn-preview {
+    width: 50%;
   }
+ .force-clockout.text-danger{
+  position: relative;
+  margin-top: 0;
+ }
 
-  .table-responsive {
-    overflow-x: auto;
-  }
-
-  .resizable-table th,
-  .resizable-table td {
-    font-size: 12px;
-    padding: 6px;
-  }
-
-  .date-box {
-    width: 18px;
-    font-size: 11px;
+  /* Clock in/out compact in mobile */
+  .clock-in, 
+  .clock-out {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
   }
 }
+
+
+
 
 @media (max-width: 480px) {
-  .title-text {
-    font-size: 16px;
-  }
-
-  .date-label,
-  .legend-item span,
-  .assignment-info,
-  .clock-time {
-    font-size: 11px !important;
-  }
-
-  .btn-clockin,
-  .btn-clockout,
-  .btn-preview {
-    font-size: 11px !important;
-    padding: 2px 10px !important;
-  }
-
-  .date-box {
-    width: 14px;
-    font-size: 9px;
-  }
+  
 }
 
 .paycode-dropdown-btn {

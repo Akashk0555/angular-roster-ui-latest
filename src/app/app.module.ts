@@ -15,7 +15,6 @@ import { ChatComponent } from './components/chat/chat.component';
 import { RemoteSiteStaffsComponent } from './components/remote-site-staffs/remote-site-staffs.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { OpenShifts } from './components/remote-site-staffs/open-shifts/open-shifts';
-import {MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 @NgModule({
@@ -34,9 +33,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-   
     HttpClientModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonToggleModule,
